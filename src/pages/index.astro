@@ -1,12 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+
+let defaultVehicleId = '636114757';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<h1 class="text-xl">This is <span class="text-orange">IT-Talents</span></h1>
+	<div class="flex justify-center items-center">
+		<h1 class="text-4xl mt-[30vh]">This is <span class="text-orange-500">IT-Talents</span></h1>
+	</div>
+	<div class="flex justify-center items-center">
+		<a class="text-blue-300 underline" href={'detail/' + defaultVehicleId} >go to Details Page</a>
+	</div>
 </Layout>

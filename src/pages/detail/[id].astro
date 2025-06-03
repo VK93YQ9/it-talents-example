@@ -1,0 +1,32 @@
+---
+import {Overview} from '../../shared/types';
+export const prerender = false;
+const { id } = Astro.params;
+
+let vehicleDetail: {overview: Overview} | { error: string };
+try {
+  const response = await fetch(`https://www.dasweltauto.at/api/locales/de_AT/vehicles/${id}/detail`);
+  if (response.ok) {
+    vehicleDetail = await response.json();
+  } else {
+    vehicleDetail = { error: 'Fahrzeug nicht gefunden' };
+  }
+} catch (error) {
+  vehicleDetail = { error: 'Fehler beim Laden der Fahrzeugdaten' };
+}
+---
+
+<h1>
+  Fahrzeugdetails
+</h1>
+{vehicleDetail.error ? (
+  <div class="text-red-500">{vehicleDetail.error}</div>
+) : (
+  <div>
+    <h2>{vehicleDetail.overview.header}</h2>
+    <h3>{vehicleDetail.overview.subHeader}</h3>
+    <p>{vehicleDetail.overview.model}</p>
+    <img src={vehicleDetail.overview.imageUrls[0]} alt={vehicleDetail.overview.header} />
+  </div>
+)}
+<a class="text-blue-300 underline" href="/">Back to IT-Talents</a>
