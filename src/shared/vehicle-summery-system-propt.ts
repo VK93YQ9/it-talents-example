@@ -1,0 +1,2 @@
+export const vehicleSummarySystemPrompt =
+  "Write a short advisement text for a vehicle with maximum 300 charters. At the end of the text there should be some fitting hashtags and the text should use emojis to emphase things. Important, the text should be written in German"
