@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import {defineConfig, envField} from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -13,5 +13,11 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: netlify()
+  adapter: netlify(),
+  env: {
+    schema: {
+      IT_TALENTS_AI_FOUNDRY_API_KEY: envField.string({ context: "server", access: "secret" }),
+      IT_TALENTS_AI_FOUNDRY_API_URL: envField.string({ context: "server", access: "secret" })
+    }
+  }
 });
